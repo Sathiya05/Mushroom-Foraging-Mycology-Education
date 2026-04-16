@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flex items-center gap-3">
             <a href="login.html" class="px-6 py-2.5 bg-[#6C7A4E] text-[#FFFFFF] rounded-md font-bold text-[12px] uppercase tracking-widest hover:bg-black shadow-lg shadow-[#C65D3B]/20 transition-all">Log In</a>
-            <a href="signup.html" class="px-6 py-2.5 bg-[#C65D3B] text-[#FFFFFF] rounded-md font-bold text-[12px] uppercase tracking-widest hover:bg-black shadow-lg shadow-[#C65D3B]/20 transition-all">Join Club</a>
+            <a href="signup.html" class="px-6 py-2.5 bg-[#C65D3B] text-[#FFFFFF] rounded-md font-bold text-[12px] uppercase tracking-widest hover:bg-black shadow-lg shadow-[#C65D3B]/20 transition-all">Sign Up</a>
         </div>
       </div>
 
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flex flex-col gap-3">
           <a href="login.html" class="w-full py-4 text-center bg-transparent border-2 border-[#C65D3B] text-[#C65D3B] rounded-md font-bold uppercase text-sm tracking-widest hover:bg-[#C65D3B] hover:text-[#FFFFFF] transition-all">Log In</a>
-          <a href="signup.html" class="w-full py-4 text-center bg-[#C65D3B] border-2 border-[#C65D3B] text-[#FFFFFF] rounded-md font-bold uppercase text-sm tracking-widest hover:bg-[#6C7A4E] hover:border-[#6C7A4E] shadow-lg shadow-[#C65D3B]/20 transition-all">Join Club</a>
+          <a href="signup.html" class="w-full py-4 text-center bg-[#C65D3B] border-2 border-[#C65D3B] text-[#FFFFFF] rounded-md font-bold uppercase text-sm tracking-widest hover:bg-[#6C7A4E] hover:border-[#6C7A4E] shadow-lg shadow-[#C65D3B]/20 transition-all">Sign Up</a>
         </div>
       </div>
     </div>

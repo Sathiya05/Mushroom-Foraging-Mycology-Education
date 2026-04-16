@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MycoSpore | The Mycelial Network Community</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+          <link rel="icon" href="images\logo.jpeg">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C65D3B',    /* Rust Orange */
+                        secondary: '#6C7A4E',  /* Olive Green */
+                        darkbg: '#1A1A1A',     /* Soft Black */
+                        lightbg: '#F7F5F0',    /* Earthy Off-White */
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F7F5F0;
+            color: #1A1A1A;
+        }
+        .dark body {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        /* Custom scrollbar for the live feed */
+        .feed-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .feed-scroll::-webkit-scrollbar-track {
+            background: rgba(108, 122, 78, 0.1);
+            border-radius: 10px;
+        }
+        .feed-scroll::-webkit-scrollbar-thumb {
+            background: rgba(108, 122, 78, 0.4);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-300 antialiased flex flex-col min-h-screen">
+
+    <div id="navbar"></div>
+
+    <section class="relative pt-40 pb-28 lg:pt-48 lg:pb-36 overflow-hidden bg-[#1A1A1A]">
+        <img src="images\bg6.webp" 
+            alt="Mycelium network" class="absolute inset-0 w-full h-full object-cover z-0 opacity-30">
+        <div class="absolute inset-0 z-10 opacity-20" style=" background-size: 30px 30px;"></div>
+        <div class="absolute inset-0 bg-black/20 z-10"></div>
+        
+        <div class="absolute top-20 left-10 w-72 h-72 bg-[#6C7A4E]/20 rounded-full blur-[100px] z-0 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-10 w-96 h-96 bg-[#C65D3B]/20 rounded-full blur-[120px] z-0 pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 relative z-20 text-center">
+            
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#242424] border border-[#6C7A4E]/40 shadow-xl mb-8 group hover:-translate-y-2 transition-transform duration-300">
+                <i class="fas fa-network-wired text-3xl text-[#6C7A4E] group-hover:text-[#C65D3B] transition-colors"></i>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black leading-tight text-white mb-6 drop-shadow-lg">
+                The <span class="text-[#C65D3B] italic">Mycelial</span> Network.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-medium drop-shadow-md max-w-3xl mx-auto">
+                Welcome to the underground. Connect with over 5,200 foragers, cultivators, and citizen scientists from around the globe.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="signup.html" class="w-full sm:w-auto px-8 py-4 bg-[#C65D3B] text-white rounded-md font-bold text-[13px] uppercase tracking-widest hover:bg-[#6C7A4E] shadow-lg shadow-[#C65D3B]/20 transition-all text-center flex items-center justify-center gap-2">
+                    <i class="fas fa-user-plus"></i> Join the Forum
+                </a>
+                <a href="about.html" class="w-full sm:w-auto px-8 py-4 bg-[#242424]/80 backdrop-blur-md border-2 border-[#6C7A4E]/40 text-white rounded-md font-bold text-[13px] uppercase tracking-widest hover:border-[#6C7A4E] transition-all text-center">
+                    Browse Boards
+                </a>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-8 lg:gap-16 text-white">
+                <div class="text-center">
+                    <span class="block text-3xl font-black font-serif text-[#C65D3B]">5.2k</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Active Members</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-3xl font-black font-serif text-[#6C7A4E]">142</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Online Now</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-3xl font-black font-serif text-white">12k+</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Species Logged</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="boards" class="py-16 lg:py-24 bg-[#F7F5F0] dark:bg-[#1A1A1A] transition-colors duration-300 flex-grow">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+                
+                <div class="w-full lg:w-2/3 space-y-10">
+                    
+                    <div class="flex items-center justify-between border-b border-[#6C7A4E]/20 pb-4">
+                        <h2 class="text-2xl font-serif font-black text-[#1A1A1A] dark:text-white">Active Boards</h2>
+                        <div class="relative">
+                            <input type="text" placeholder="Search topics..." class="pl-10 pr-4 py-2 bg-white dark:bg-[#242424] border border-[#6C7A4E]/30 rounded-full text-sm outline-none focus:border-[#C65D3B] text-[#1A1A1A] dark:text-white w-48 sm:w-64 transition-all shadow-sm">
+                            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+                        <a href="guide.html" class="flex items-start p-6 block">
+                            <div class="w-14 h-14 rounded-full bg-[#C65D3B]/10 flex items-center justify-center text-[#C65D3B] text-xl shrink-0 border border-[#C65D3B]/20 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="ml-5 flex-grow">
+                                <div class="flex justify-between items-start mb-1">
+                                    <h3 class="font-serif font-bold text-xl text-[#1A1A1A] dark:text-white group-hover:text-[#C65D3B] transition-colors">Identification Requests</h3>
+                                    <span class="bg-[#C65D3B] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest">Urgent</span>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Post photos of your finds. Get help identifying unknown species from our certified mycologists and experienced foragers.</p>
+                                <div class="flex items-center gap-6 text-xs font-bold text-gray-500 uppercase tracking-widest border-t border-[#6C7A4E]/10 pt-4">
+                                    <span><i class="fas fa-comments text-[#6C7A4E] mr-1"></i> 2,450 Topics</span>
+                                    <span><i class="fas fa-clock text-[#6C7A4E] mr-1"></i> Latest: 5 mins ago</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+                        <a href="guide.html" class="flex items-start p-6 block">
+                            <div class="w-14 h-14 rounded-full bg-[#6C7A4E]/10 flex items-center justify-center text-[#6C7A4E] text-xl shrink-0 border border-[#6C7A4E]/20 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="ml-5 flex-grow">
+                                <h3 class="font-serif font-bold text-xl text-[#1A1A1A] dark:text-white mb-1 group-hover:text-[#6C7A4E] transition-colors">Lab & Cultivation Talk</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Discuss agar recipes, liquid culture isolation, contamination troubleshooting, and fruiting chamber designs.</p>
+                                <div class="flex items-center gap-6 text-xs font-bold text-gray-500 uppercase tracking-widest border-t border-[#6C7A4E]/10 pt-4">
+                                    <span><i class="fas fa-comments text-[#6C7A4E] mr-1"></i> 1,820 Topics</span>
+                                    <span><i class="fas fa-clock text-[#6C7A4E] mr-1"></i> Latest: 1 hour ago</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
+                        <a href="guide.html" class="flex items-start p-6 block">
+                            <div class="w-14 h-14 rounded-full bg-[#6C7A4E]/10 flex items-center justify-center text-[#6C7A4E] text-xl shrink-0 border border-[#6C7A4E]/20 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="ml-5 flex-grow">
+                                <h3 class="font-serif font-bold text-xl text-[#1A1A1A] dark:text-white mb-1 group-hover:text-[#6C7A4E] transition-colors">Regional Foray Updates</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Connect with locals. Share weather reports, soil conditions, and what species are currently popping in your specific region.</p>
+                                <div class="flex items-center gap-6 text-xs font-bold text-gray-500 uppercase tracking-widest border-t border-[#6C7A4E]/10 pt-4">
+                                    <span><i class="fas fa-comments text-[#6C7A4E] mr-1"></i> 940 Topics</span>
+                                    <span><i class="fas fa-clock text-[#6C7A4E] mr-1"></i> Latest: 3 hours ago</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    
+
+                </div>
+
+                <aside class="w-full lg:w-1/3">
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-3xl border border-[#6C7A4E]/20 shadow-xl overflow-hidden sticky top-28">
+                        
+                        <div class="bg-gradient-to-r from-[#1A1A1A] to-[#242424] p-5 border-b border-[#6C7A4E]/30 flex justify-between items-center relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/20 rounded-full blur-xl pointer-events-none"></div>
+                            <div>
+                                <h3 class="font-serif font-bold text-white text-lg flex items-center gap-2">
+                                    Live Field Notes <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                </h3>
+                                <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Community Activity</p>
+                            </div>
+                            <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#C65D3B] text-white flex items-center justify-center transition-colors shadow-sm">
+                                <i class="fas fa-pen text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="p-5 space-y-6 h-[500px] overflow-y-auto feed-scroll bg-[#F7F5F0] dark:bg-[#1A1A1A]/50">
+                            
+                            <div class="relative pl-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-[-24px] before:w-0.5 before:bg-[#6C7A4E]/20">
+                                <div class="absolute left-[3px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#C65D3B] shadow-[0_0_8px_#C65D3B]"></div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <img src="images\bg4.webp" class="w-6 h-6 rounded-full border border-[#6C7A4E]">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white">@MarcusV</span>
+                                    <span class="text-xs text-gray-500">just now</span>
+                                </div>
+                                <div class="bg-white dark:bg-[#242424] p-3 rounded-xl border border-[#6C7A4E]/10 shadow-sm text-sm text-gray-600 dark:text-gray-300">
+                                    My first flush of Blue Oysters just pinned! The substrate was 50/50 hardwood sawdust and soy hulls. 🍄
+                                </div>
+                            </div>
+
+                            <div class="relative pl-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-[-24px] before:w-0.5 before:bg-[#6C7A4E]/20">
+                                <div class="absolute left-[3px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#6C7A4E]"></div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <img src="images\prob1.avif" class="w-6 h-6 rounded-full border border-[#6C7A4E]">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white">@FungiFern</span>
+                                    <span class="text-xs text-gray-500">12 mins ago</span>
+                                </div>
+                                <div class="bg-white dark:bg-[#242424] p-3 rounded-xl border border-[#6C7A4E]/10 shadow-sm text-sm text-gray-600 dark:text-gray-300">
+                                    <p class="mb-2">Need an ID check. Found these growing near the base of a dead oak in Pennsylvania.</p>
+                                    <div class="w-full h-32 rounded-lg overflow-hidden border border-[#6C7A4E]/20">
+                                        <img src="images\img14.avif" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="mt-2 flex gap-3 text-xs text-gray-500 font-bold">
+                                        <span class="hover:text-[#C65D3B] cursor-pointer"><i class="fas fa-comment"></i> 4 replies</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative pl-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-[-24px] before:w-0.5 before:bg-transparent">
+                                <div class="absolute left-[2px] top-1 w-3 h-3 rounded-full bg-[#1A1A1A] dark:bg-white flex items-center justify-center"><i class="fas fa-bullhorn text-[6px] text-white dark:text-[#1A1A1A]"></i></div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white">Admin Announcement</span>
+                                    <span class="text-xs text-gray-500">1 hr ago</span>
+                                </div>
+                               
+                            </div>
+
+                        </div>
+                        
+                        <a href="guide.html" class="block w-full py-4 text-center bg-white dark:bg-[#242424] border-t border-[#6C7A4E]/10 text-xs font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#C65D3B] hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                            Load More Activity
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-20 lg:py-28 bg-[#FFFFFF] dark:bg-[#161616] border-t border-[#6C7A4E]/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#C65D3B] mb-2 block">Member Spotlight</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
+                    Our Top Identifiers
+                </h2>
+                <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-4">
+                    These dedicated citizen scientists and certified mycologists keep our community safe and informed.
+                </p>
+                <div class="mt-8">
+                    <a href="guide.html" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#C65D3B] transition-colors group border-b-2 border-[#6C7A4E] hover:border-[#C65D3B] pb-1">
+                        View Leaderboard <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl p-6 text-center border border-[#6C7A4E]/20 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative group">
+                    <div class="absolute top-4 left-4 text-[#C65D3B]"><i class="fas fa-crown text-xl drop-shadow-md"></i></div>
+                    <img src="images\prob1.avif" class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-[#FFFFFF] dark:border-[#1A1A1A] shadow-md mb-4 group-hover:scale-110 transition-transform">
+                    <h3 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Dr. Aris Thorne</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] mb-4">Lead Mycologist</p>
+                    <div class="flex justify-center gap-4 text-xs font-bold text-gray-500 bg-[#FFFFFF] dark:bg-[#1A1A1A] py-2 rounded-lg border border-[#6C7A4E]/10">
+                        <div class="text-center"><span class="block text-[#1A1A1A] dark:text-white text-base font-black">4.2k</span> IDs</div>
+                        <div class="w-px bg-[#6C7A4E]/20"></div>
+                        <div class="text-center"><span class="block text-[#C65D3B] text-base font-black">18k</span> Helpful</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl p-6 text-center border border-[#6C7A4E]/20 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative group">
+                    <div class="absolute top-4 left-4 text-gray-400"><i class="fas fa-medal text-xl drop-shadow-md"></i></div>
+                    <img src="images\pro g1.avif" class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-[#FFFFFF] dark:border-[#1A1A1A] shadow-md mb-4 group-hover:scale-110 transition-transform">
+                    <h3 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Elena Rostova</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] mb-4">Master Forager</p>
+                    <div class="flex justify-center gap-4 text-xs font-bold text-gray-500 bg-[#FFFFFF] dark:bg-[#1A1A1A] py-2 rounded-lg border border-[#6C7A4E]/10">
+                        <div class="text-center"><span class="block text-[#1A1A1A] dark:text-white text-base font-black">3.1k</span> IDs</div>
+                        <div class="w-px bg-[#6C7A4E]/20"></div>
+                        <div class="text-center"><span class="block text-[#C65D3B] text-base font-black">12k</span> Helpful</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl p-6 text-center border border-[#6C7A4E]/20 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative group">
+                    <div class="absolute top-4 left-4 text-[#cd7f32]"><i class="fas fa-medal text-xl drop-shadow-md"></i></div>
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-[#FFFFFF] dark:border-[#1A1A1A] shadow-md mb-4 group-hover:scale-110 transition-transform">
+                    <h3 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Sarah Jenkins</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] mb-4">Level 3 Identifier</p>
+                    <div class="flex justify-center gap-4 text-xs font-bold text-gray-500 bg-[#FFFFFF] dark:bg-[#1A1A1A] py-2 rounded-lg border border-[#6C7A4E]/10">
+                        <div class="text-center"><span class="block text-[#1A1A1A] dark:text-white text-base font-black">890</span> IDs</div>
+                        <div class="w-px bg-[#6C7A4E]/20"></div>
+                        <div class="text-center"><span class="block text-[#C65D3B] text-base font-black">4.2k</span> Helpful</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl p-6 text-center border border-[#6C7A4E]/20 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative group">
+                    <img src="https://images.unsplash.com/photo-1543132220-3ec99c6094dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-full mx-auto object-cover border-4 border-[#FFFFFF] dark:border-[#1A1A1A] shadow-md mb-4 group-hover:scale-110 transition-transform">
+                    <h3 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Marcus Vance</h3>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] mb-4">Level 3 Identifier</p>
+                    <div class="flex justify-center gap-4 text-xs font-bold text-gray-500 bg-[#FFFFFF] dark:bg-[#1A1A1A] py-2 rounded-lg border border-[#6C7A4E]/10">
+                        <div class="text-center"><span class="block text-[#1A1A1A] dark:text-white text-base font-black">750</span> IDs</div>
+                        <div class="w-px bg-[#6C7A4E]/20"></div>
+                        <div class="text-center"><span class="block text-[#C65D3B] text-base font-black">3.8k</span> Helpful</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-[#1A1A1A] dark:bg-[#0A0A0A] relative overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute inset-0 opacity-5 z-0" style="background-image: repeating-linear-gradient(45deg, #6C7A4E 25%, transparent 25%, transparent 75%, #6C7A4E 75%, #6C7A4E), repeating-linear-gradient(45deg, #6C7A4E 25%, transparent 25%, transparent 75%, #6C7A4E 75%, #6C7A4E); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <div class="lg:col-span-5 text-center lg:text-left">
+                    <i class="fas fa-shield-alt text-4xl text-[#C65D3B] mb-6"></i>
+                    <h2 class="text-4xl md:text-5xl font-serif font-black text-[#FFFFFF] leading-tight mb-6">
+                        Rules of the Woods.
+                    </h2>
+                    <p class="text-lg text-gray-300 leading-relaxed font-medium">
+                        To maintain a safe and educational environment, all members must adhere to our core community guidelines. Violations regarding safety will result in immediate bans.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+                    
+                    <div class="bg-[#242424]/80 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-[#C65D3B]/50 transition-colors">
+                        <i class="fas fa-exclamation-triangle text-[#C65D3B] text-xl mb-3"></i>
+                        <h4 class="text-lg font-bold text-white mb-2">No 100% ID Guarantees</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">Online identification is never a substitute for in-person expert verification. Never eat a mushroom based solely on forum replies.</p>
+                    </div>
+
+                    <div class="bg-[#242424]/80 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-[#6C7A4E]/50 transition-colors">
+                        <i class="fas fa-map-pin text-[#6C7A4E] text-xl mb-3"></i>
+                        <h4 class="text-lg font-bold text-white mb-2">Protect Foraging Spots</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">Do not post exact GPS coordinates of wild edibles. Share general regions (e.g., "Pacific NW") to prevent over-harvesting by crowds.</p>
+                    </div>
+
+                    <div class="bg-[#242424]/80 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-[#6C7A4E]/50 transition-colors">
+                        <i class="fas fa-microscope text-[#6C7A4E] text-xl mb-3"></i>
+                        <h4 class="text-lg font-bold text-white mb-2">Use Scientific Names</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">Common names vary by region and can be dangerous. Always strive to include the Latin binomial name (e.g., *Morchella elata*).</p>
+                    </div>
+
+                    <div class="bg-[#242424]/80 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-[#6C7A4E]/50 transition-colors">
+                        <i class="fas fa-camera text-[#6C7A4E] text-xl mb-3"></i>
+                        <h4 class="text-lg font-bold text-white mb-2">Require Good Photos</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">ID requests must include clear photos of the cap, gills/pores, stem, and base. Spore prints are highly encouraged.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 lg:py-28 bg-[#F7F5F0] dark:bg-[#161616] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-3xl border-2 border-[#C65D3B]/30 overflow-hidden shadow-2xl flex flex-col lg:flex-row relative group">
+                
+                <div class="absolute -inset-1 bg-gradient-to-r from-[#C65D3B]/20 to-[#6C7A4E]/20 blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+
+                <div class="w-full lg:w-5/12 relative h-72 lg:h-auto overflow-hidden shrink-0 z-10">
+                    <img src="images\img1.avif" alt="Lion's Mane Mushroom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    
+                    <div class="absolute top-6 left-6 bg-[#C65D3B] text-white font-bold uppercase tracking-widest text-[10px] px-3 py-1.5 rounded-sm shadow-lg flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Active Event
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-7/12 p-8 md:p-12 flex flex-col justify-center bg-[#FFFFFF] dark:bg-[#242424] z-10 relative overflow-hidden">
+                    
+                    <i class="fas fa-camera absolute -bottom-10 -right-10 text-[150px] text-[#C65D3B] opacity-5 transform -rotate-12 pointer-events-none"></i>
+
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#6C7A4E] mb-2 block">October Challenge</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] mb-4 leading-tight">
+                        The Hunt for <span class="text-[#C65D3B] italic">Hericium</span>
+                    </h2>
+                    
+                    <p class="text-base text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        Autumn is here, and the majestic Lion's Mane and Bear's Head Tooth are fruiting! Your mission is to find, photograph, and log a wild specimen growing in its natural hardwood habitat. 
+                    </p>
+
+                    <div class="bg-[#F7F5F0] dark:bg-[#1A1A1A] rounded-xl p-5 border border-[#6C7A4E]/10 mb-8">
+                        <h4 class="font-bold text-[#1A1A1A] dark:text-white text-sm mb-3 uppercase tracking-widest"><i class="fas fa-trophy text-[#C65D3B] mr-2"></i> The Reward</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Our mycologists will review all submissions. The most beautiful habitat photo wins an exclusive <strong>"Master Spotter" Forum Badge</strong> and a <strong>Free Liquid Culture Syringe</strong> of your choice from the lab!
+                        </p>
+                        
+                        <div class="flex items-center gap-4 border-t border-[#6C7A4E]/10 pt-4">
+                            <div class="w-10 h-10 rounded-full bg-[#C65D3B]/10 flex items-center justify-center text-[#C65D3B]">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Time Remaining</p>
+                                <p class="font-bold text-[#1A1A1A] dark:text-white">12 Days, 4 Hours</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-4 mt-auto">
+                        <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-[#6C7A4E] text-white rounded-md font-bold text-[13px] uppercase tracking-widest hover:bg-[#C65D3B] shadow-lg shadow-[#6C7A4E]/20 transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fas fa-upload"></i> Submit Your Entry
+                        </a>
+                        <a href="guide.html" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-[#1A1A1A] dark:border-[#FFFFFF] text-[#1A1A1A] dark:text-[#FFFFFF] rounded-md font-bold text-[13px] uppercase tracking-widest hover:bg-[#1A1A1A] hover:text-[#FFFFFF] dark:hover:bg-[#FFFFFF] dark:hover:text-[#1A1A1A] transition-all text-center">
+                           Identification Tips
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 lg:py-32 bg-[#0A0A0A] relative overflow-hidden">
+        
+        <!-- Premium Gloom Glows -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div class="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-[#C65D3B]/10 rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-1/2 -left-1/4 w-[600px] h-[600px] bg-[#6C7A4E]/10 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center">
+            
+            <div class="w-20 h-20 mx-auto bg-[#1A1A1A] border border-[#6C7A4E]/30 rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(108,122,78,0.15)] group hover:-translate-y-2 transition-transform duration-500">
+                <i class="fas fa-door-open text-3xl text-[#6C7A4E] group-hover:text-[#C65D3B] transition-colors"></i>
+            </div>
+            
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white mb-6 leading-tight">
+                Ready to Join the <span class="text-[#C65D3B] italic">Club?</span>
+            </h2>
+            
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
+                Create your free MycoSpore account today to unlock full forum access, post your own logs, and start building your forager reputation.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="signup.html" class="w-full sm:w-auto px-10 py-5 bg-[#C65D3B] text-white rounded-md font-bold text-[14px] uppercase tracking-widest hover:bg-[#6C7A4E] hover:-translate-y-1 shadow-lg shadow-[#C65D3B]/20 transition-all shrink-0">
+                    Create Free Account
+                </a>
+                <a href="login.html" class="w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-white text-white rounded-md font-bold text-[14px] uppercase tracking-widest hover:bg-white hover:text-[#1A1A1A] hover:-translate-y-1 transition-all shrink-0">
+                    Log In
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+</body>
+</html>

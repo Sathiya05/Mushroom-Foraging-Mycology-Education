@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MycoSpore | Interactive Field Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C65D3B',    /* Rust Orange */
+                        secondary: '#6C7A4E',  /* Olive Green */
+                        darkbg: '#1A1A1A',     /* Soft Black */
+                        lightbg: '#F7F5F0',    /* Earthy Off-White */
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F7F5F0;
+            color: #1A1A1A;
+        }
+        .dark body {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        /* Custom Checkbox Styling for the Filter Sidebar */
+        .myco-checkbox:checked {
+            background-color: #6C7A4E;
+            border-color: #6C7A4E;
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-300 antialiased">
+
+    <div id="navbar"></div>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#1A1A1A]">
+        <img src="images\bg3.avif" alt="Forest Floor" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 ">
+        <div class="absolute inset-0 bg-black/20 z-10"></div>
+
+        <div class="max-w-4xl mx-auto px-6 md:px-12 relative z-20 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFFFF]/10 backdrop-blur-md border border-[#FFFFFF]/20 mb-6">
+                <i class="fas fa-book-open text-[#6C7A4E]"></i>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-white">Interactive Species Database</span>
+            </span>
+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black leading-tight text-white mb-8 drop-shadow-lg">
+                Identify. Learn. <span class="text-[#C65D3B] italic">Forage Safely.</span>
+            </h1>
+
+            <div class="relative max-w-3xl mx-auto group">
+                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-2xl text-gray-400 group-focus-within:text-[#C65D3B] transition-colors"></i>
+                </div>
+                <input type="text" placeholder="Search by common name, scientific name, or family..." 
+                    class="w-full pl-16 pr-6 py-6 bg-white/95 dark:bg-[#242424]/95 backdrop-blur-md border-2 border-transparent focus:border-[#C65D3B] rounded-2xl text-lg text-[#1A1A1A] dark:text-white placeholder-gray-500 shadow-2xl outline-none transition-all duration-300">
+                <button class="absolute inset-y-3 right-3 px-8 bg-[#C65D3B] text-white rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-[#6C7A4E] transition-colors shadow-lg">
+                    Search
+                </button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <button class="px-4 py-2 bg-white/10 hover:bg-[#6C7A4E] border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white transition-all backdrop-blur-sm">Choice Edibles</button>
+                <button class="px-4 py-2 bg-white/10 hover:bg-[#6C7A4E] border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white transition-all backdrop-blur-sm">Medicinal</button>
+                <button class="px-4 py-2 bg-white/10 hover:bg-[#C65D3B] border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white transition-all backdrop-blur-sm">Poisonous Warning</button>
+                <button class="px-4 py-2 bg-white/10 hover:bg-[#6C7A4E] border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white transition-all backdrop-blur-sm">Spring Foraging</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 lg:py-28 bg-[#F7F5F0] dark:bg-[#1A1A1A] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#C65D3B] mb-2 block">Species Library</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
+                    Explore Modern Mycology
+                </h2>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10 lg:gap-16">
+                
+                <aside class="w-full md:w-1/3 lg:w-1/4 shrink-0">
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] p-6 rounded-2xl border border-[#6C7A4E]/20 sticky top-28 shadow-sm">
+                        
+                        <div class="flex items-center justify-between border-b border-[#6C7A4E]/20 pb-4 mb-6">
+                            <h3 class="font-serif font-bold text-lg text-[#1A1A1A] dark:text-white">Filters</h3>
+                            <button class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C65D3B] transition-colors">Clear All</button>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Edibility</h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" class="myco-checkbox w-5 h-5 rounded border-gray-300 text-[#6C7A4E] focus:ring-[#6C7A4E] transition-colors bg-white dark:bg-[#1A1A1A] dark:border-gray-600">
+                                    <span class="text-sm font-medium text-[#1A1A1A] dark:text-gray-300 group-hover:text-[#6C7A4E] transition-colors">Choice Edible</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" class="myco-checkbox w-5 h-5 rounded border-gray-300 text-[#6C7A4E] focus:ring-[#6C7A4E] transition-colors bg-white dark:bg-[#1A1A1A] dark:border-gray-600">
+                                    <span class="text-sm font-medium text-[#1A1A1A] dark:text-gray-300 group-hover:text-[#6C7A4E] transition-colors">Medicinal</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" class="myco-checkbox w-5 h-5 rounded border-gray-300 text-[#6C7A4E] focus:ring-[#6C7A4E] transition-colors bg-white dark:bg-[#1A1A1A] dark:border-gray-600">
+                                    <span class="text-sm font-medium text-[#1A1A1A] dark:text-gray-300 group-hover:text-[#6C7A4E] transition-colors">Inedible</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-[#C65D3B] focus:ring-[#C65D3B] transition-colors bg-white dark:bg-[#1A1A1A] dark:border-gray-600" checked>
+                                    <span class="text-sm font-medium text-[#1A1A1A] dark:text-gray-300 group-hover:text-[#C65D3B] transition-colors">Toxic / Deadly</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Season</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 border border-[#6C7A4E]/30 rounded-md text-xs font-bold text-gray-600 dark:text-gray-400 hover:bg-[#6C7A4E] hover:text-white hover:border-[#6C7A4E] cursor-pointer transition-all bg-[#F7F5F0] dark:bg-[#1A1A1A]">Spring</span>
+                                <span class="px-3 py-1.5 border border-[#6C7A4E] bg-[#6C7A4E] text-white rounded-md text-xs font-bold cursor-pointer transition-all">Summer</span>
+                                <span class="px-3 py-1.5 border border-[#6C7A4E]/30 rounded-md text-xs font-bold text-gray-600 dark:text-gray-400 hover:bg-[#6C7A4E] hover:text-white hover:border-[#6C7A4E] cursor-pointer transition-all bg-[#F7F5F0] dark:bg-[#1A1A1A]">Autumn</span>
+                                <span class="px-3 py-1.5 border border-[#6C7A4E]/30 rounded-md text-xs font-bold text-gray-600 dark:text-gray-400 hover:bg-[#6C7A4E] hover:text-white hover:border-[#6C7A4E] cursor-pointer transition-all bg-[#F7F5F0] dark:bg-[#1A1A1A]">Winter</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <div class="w-full md:w-2/3 lg:w-3/4">
+                    
+                   
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+
+                        <a href="community.html" class="group bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl overflow-hidden border border-[#6C7A4E]/20 hover:border-[#6C7A4E] shadow-sm hover:shadow-xl hover:shadow-[#6C7A4E]/10 transition-all duration-300 flex flex-col">
+                            <div class="relative aspect-[4/3] overflow-hidden">
+                                <div class="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#6C7A4E] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm shadow-md">Choice Edible</div>
+                                <img src="images\img18.avif" alt="Black Morel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow border-t border-[#6C7A4E]/10">
+                                <h3 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight mb-1">Black Morel</h3>
+                                <p class="text-sm italic text-gray-500 dark:text-gray-400 font-serif border-b border-[#6C7A4E]/10 pb-3 mb-3">Morchella elata</p>
+                                <div class="flex flex-col gap-2 mt-auto">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-tree text-[#6C7A4E] w-4 text-center"></i> Conifer Forests, Burn Sites</div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-calendar-alt text-[#6C7A4E] w-4 text-center"></i> Spring</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="community.html" class="group bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl overflow-hidden border border-[#C65D3B]/30 hover:border-[#C65D3B] shadow-sm hover:shadow-xl hover:shadow-[#C65D3B]/10 transition-all duration-300 flex flex-col">
+                            <div class="relative aspect-[4/3] overflow-hidden">
+                                <div class="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#C65D3B] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm shadow-md">Toxic / Deadly</div>
+                                <img src="images\img4.avif" alt="Fly Agaric" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow border-t border-[#C65D3B]/10">
+                                <h3 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight mb-1">Fly Agaric</h3>
+                                <p class="text-sm italic text-gray-500 dark:text-gray-400 font-serif border-b border-[#C65D3B]/10 pb-3 mb-3">Amanita muscaria</p>
+                                <div class="flex flex-col gap-2 mt-auto">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-tree text-[#C65D3B] w-4 text-center"></i> Pine, Birch, Spruce Woods</div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-calendar-alt text-[#C65D3B] w-4 text-center"></i> Late Summer - Autumn</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="community.html" class="group bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl overflow-hidden border border-[#6C7A4E]/20 hover:border-[#6C7A4E] shadow-sm hover:shadow-xl hover:shadow-[#6C7A4E]/10 transition-all duration-300 flex flex-col">
+                            <div class="relative aspect-[4/3] overflow-hidden">
+                                <div class="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#6C7A4E] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm shadow-md">Choice Edible</div>
+                                <img src="images\img14.avif" alt="Golden Chanterelle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow border-t border-[#6C7A4E]/10">
+                                <h3 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight mb-1">Golden Chanterelle</h3>
+                                <p class="text-sm italic text-gray-500 dark:text-gray-400 font-serif border-b border-[#6C7A4E]/10 pb-3 mb-3">Cantharellus cibarius</p>
+                                <div class="flex flex-col gap-2 mt-auto">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-tree text-[#6C7A4E] w-4 text-center"></i> Hardwood & Conifer Forests</div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"><i class="fas fa-calendar-alt text-[#6C7A4E] w-4 text-center"></i> Summer - Autumn</div>
+                                </div>
+                            </div>
+                        </a>
+
+                       
+
+                    </div>
+
+                    <div class="flex items-center justify-center gap-2 mt-12">
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-[#6C7A4E]/30 text-gray-500 hover:border-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white transition-all"><i class="fas fa-chevron-left"></i></button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-[#6C7A4E] text-white font-bold shadow-md">1</button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-[#6C7A4E]/30 text-gray-600 dark:text-gray-400 hover:border-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white font-bold transition-all">2</button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-[#6C7A4E]/30 text-gray-600 dark:text-gray-400 hover:border-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white font-bold transition-all">3</button>
+                        <span class="text-gray-400 mx-1">...</span>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-[#6C7A4E]/30 text-gray-600 dark:text-gray-400 hover:border-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white font-bold transition-all">24</button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-[#6C7A4E]/30 text-gray-500 hover:border-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white transition-all"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-20 lg:py-28 bg-[#FFFFFF] dark:bg-[#1A1A1A] border-t border-[#6C7A4E]/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#C65D3B] mb-2 block">Crucial Distinctions</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
+                    Dangerous Doppelgängers
+                </h2>
+                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mt-4">
+                    Many choice edibles have toxic lookalikes. Learn to spot the subtle differences before you ever harvest.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-16">
+                
+                <div class="relative bg-[#F7F5F0] dark:bg-[#242424] rounded-3xl p-4 sm:p-6 border border-[#6C7A4E]/20 shadow-lg">
+                    <div class="absolute top-[43%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-[#1A1A1A] text-white rounded-full flex items-center justify-center font-black font-serif text-sm sm:text-base border-4 border-[#F7F5F0] dark:border-[#242424] z-20 shadow-md">
+                        VS
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-4 h-full relative z-10">
+                        <div class="flex-1 bg-white dark:bg-[#1A1A1A] rounded-2xl overflow-hidden border-2 border-[#6C7A4E]/50">
+                            <div class="relative h-40 sm:h-48">
+                                <div class="absolute top-2 left-2 z-10 px-2 py-1 bg-[#6C7A4E] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm">Choice Edible</div>
+                                <img src="images\img15.webp" alt="Chanterelle" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Chanterelle</h4>
+                                <ul class="mt-3 space-y-2 text-xs text-gray-600 dark:text-gray-400">
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> False gills (forked folds)</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> Solid white inner flesh</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> Grows from soil</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 bg-white dark:bg-[#1A1A1A] rounded-2xl overflow-hidden border-2 border-[#C65D3B]/50">
+                            <div class="relative h-40 sm:h-48">
+                                <div class="absolute top-2 right-2 z-10 px-2 py-1 bg-[#C65D3B] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm">Toxic</div>
+                                <img src="images\img16.avif" alt="Jack-o-Lantern" class="w-full h-full object-cover grayscale-[30%]">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">Jack-o'-Lantern</h4>
+                                <ul class="mt-3 space-y-2 text-xs text-gray-600 dark:text-gray-400">
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> True, deep, non-forking gills</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> Orange flesh throughout</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> Grows in clusters on wood</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-[#F7F5F0] dark:bg-[#242424] rounded-3xl p-4 sm:p-6 border border-[#6C7A4E]/20 shadow-lg">
+                    <div class="absolute top-[43%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-[#1A1A1A] text-white rounded-full flex items-center justify-center font-black font-serif text-sm sm:text-base border-4 border-[#F7F5F0] dark:border-[#242424] z-20 shadow-md">
+                        VS
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-4 h-full relative z-10">
+                        <div class="flex-1 bg-white dark:bg-[#1A1A1A] rounded-2xl overflow-hidden border-2 border-[#6C7A4E]/50">
+                            <div class="relative h-40 sm:h-48">
+                                <div class="absolute top-2 left-2 z-10 px-2 py-1 bg-[#6C7A4E] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm">Choice Edible</div>
+                                <img src="images\bg1.avif" alt="True Morel" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">True Morel</h4>
+                                <ul class="mt-3 space-y-2 text-xs text-gray-600 dark:text-gray-400">
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> Cap is pitted (like a honeycomb)</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> Completely hollow inside</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-[#6C7A4E] mt-0.5"></i> Cap attached directly to stem</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 bg-white dark:bg-[#1A1A1A] rounded-2xl overflow-hidden border-2 border-[#C65D3B]/50">
+                            <div class="relative h-40 sm:h-48">
+                                <div class="absolute top-2 right-2 z-10 px-2 py-1 bg-[#C65D3B] text-white text-[9px] font-bold uppercase tracking-widest rounded-sm">Toxic / Deadly</div>
+                                <img src="images\img17.avif" alt="False Morel" class="w-full h-full object-cover grayscale-[30%]">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif font-bold text-[#1A1A1A] dark:text-white text-lg">False Morel</h4>
+                                <ul class="mt-3 space-y-2 text-xs text-gray-600 dark:text-gray-400">
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> Cap is lobed/wrinkled (brain-like)</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> Filled with cottony fibers inside</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times text-[#C65D3B] mt-0.5"></i> Cap hangs free from stem</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-[#1A1A1A] dark:bg-[#0A0A0A] relative overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-[#C65D3B]/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                
+                <div class="w-full lg:w-1/2 relative flex justify-center">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 bg-[#6C7A4E]/20 rounded-full border border-[#6C7A4E]/30 z-0"></div>
+                    
+                    <div class="relative w-64 h-[500px] bg-[#242424] rounded-[2.5rem] border-8 border-[#333333] shadow-2xl z-10 overflow-hidden flex flex-col">
+                        <div class="bg-[#1A1A1A] p-4 text-center border-b border-gray-700">
+                            <span class="text-white font-serif font-bold tracking-widest uppercase text-sm">MycoSpore</span>
+                        </div>
+                        <div class="flex-1 bg-[#F7F5F0] p-4 flex flex-col gap-3">
+                            <div class="w-full h-32 bg-gray-300 rounded-lg overflow-hidden">
+                                <img src="images\1.avif" alt="App preview" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-full h-32 bg-gray-300 rounded-lg overflow-hidden">
+                                <img src="images\img3.avif" alt="App preview" class="w-full h-full object-cover">
+                            </div>                            <div class="w-1/2 h-3 bg-gray-300 rounded-full mb-4"></div>
+                            
+                        </div>
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#C65D3B] text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg whitespace-nowrap">
+                            Available Offline
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 text-center lg:text-left">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#C65D3B]/20 border border-[#C65D3B]/30 mb-6 backdrop-blur-sm">
+                        <i class="fas fa-signal-slash text-[#C65D3B]"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-white">No Signal? No Problem.</span>
+                    </span>
+                    
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-black text-white mb-6 leading-tight">
+                        Download the <span class="text-[#C65D3B] italic">Pocket Guide</span>.
+                    </h2>
+                    
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed font-medium">
+                        The best mushrooms grow where cell towers don't reach. Take the entire MycoSpore species database with you into the deep woods.
+                    </p>
+
+                    <ul class="space-y-4 mb-10 text-left max-w-md mx-auto lg:mx-0">
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-[#6C7A4E] mt-1.5"></i>
+                            <span>Full offline access to 150+ species profiles.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-[#6C7A4E] mt-1.5"></i>
+                            <span>High-resolution ID photos stored locally.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-[#6C7A4E] mt-1.5"></i>
+                            <span>Available as an iOS/Android App and printable PDF.</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#" class="w-full sm:w-auto px-8 py-4 bg-[#C65D3B] text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-[#6C7A4E] shadow-lg shadow-[#C65D3B]/20 transition-all flex items-center justify-center gap-2">
+                            <i class="fab fa-apple text-lg"></i> App Store
+                        </a>
+                        <a href="#" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-[#1A1A1A] transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-file-pdf text-lg"></i> Download PDF
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<section class="py-20 lg:py-28 bg-[#FFFFFF] dark:bg-[#1A1A1A] border-t border-[#6C7A4E]/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#C65D3B] mb-2 block">Speak the Language</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
+                    Quick Field Glossary
+                </h2>
+                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mt-4">
+                    Master these common botanical terms to easily navigate identification keys and field descriptions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Mycelium</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">The vegetative part of a fungus, consisting of a network of fine white filaments (hyphae). The actual "body" of the organism; the mushroom is just the fruit.</p>
+                </div>
+
+               
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Mycorrhizal</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">A symbiotic relationship where fungi connect with the roots of living trees, exchanging nutrients. These cannot be easily cultivated (e.g., Chanterelles, Porcini).</p>
+                </div>
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Volva</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">A cup-like sac at the base of the stem, formed when the universal veil breaks as the mushroom grows. A key identification feature for the deadly Amanita family.</p>
+                </div>
+             <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Saprotrophic</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Fungi that obtain nutrients by decomposing dead or decaying organic matter, like fallen logs or leaf litter (e.g., Oyster).</p>
+                </div>
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Annulus (Ring)</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">A skirt-like ring of tissue left on the stem after the partial veil breaks. Often catches spores as they fall from the gills.</p>
+                </div>
+
+                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-6 lg:p-8 rounded-2xl border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/40 transition-colors">
+                    <h4 class="text-lg font-serif font-bold text-[#C65D3B] mb-2">Stipe & Pileus</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">The scientific terms for the <strong>Stem</strong> (Stipe) and the <strong>Cap</strong> (Pileus) of the mushroom. You will see these frequently in academic keys.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   
+ <section class="py-24 lg:py-32 bg-[#1A1A1A] dark:bg-[#0A0A0A] relative overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-[#C65D3B]/50 to-transparent"></div>
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#C65D3B]/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+        <div class="max-w-4xl mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center">
+            
+            <div class="w-20 h-20 mx-auto bg-[#242424] border border-[#C65D3B]/30 rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(198,93,59,0.15)] group hover:-translate-y-2 transition-transform duration-500">
+                <i class="fas fa-map-signs text-3xl text-[#C65D3B] group-hover:text-[#6C7A4E] transition-colors"></i>
+            </div>
+            
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#FFFFFF] mb-6 leading-tight">
+                Ready to step into the <span class="text-[#6C7A4E] italic">Wild</span>?
+            </h2>
+            
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
+                Put your field guide knowledge into practice. Don't forage alone—join a local expert-led foray, or enroll in our comprehensive online identification courses.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="courses.html" class="w-full sm:w-auto px-10 py-5 bg-[#C65D3B] text-[#FFFFFF] rounded-md font-bold text-[14px] uppercase tracking-widest hover:bg-[#6C7A4E] hover:-translate-y-1 shadow-lg shadow-[#C65D3B]/20 transition-all shrink-0">
+                    View Field Courses
+                </a>
+                
+                <a href="community.html" class="w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-[#FFFFFF] text-[#FFFFFF] rounded-md font-bold text-[14px] uppercase tracking-widest hover:bg-[#FFFFFF] hover:text-[#1A1A1A] hover:-translate-y-1 transition-all shrink-0">
+                    Join the Community
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+</body>
+</html>

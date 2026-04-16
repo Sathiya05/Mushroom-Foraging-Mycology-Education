@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MycoSpore | Admin Control Panel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="tailwind.js"></script>
+        <link rel="icon" href="images\logo.jpeg">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C65D3B',    /* Rust Orange */
+                        secondary: '#6C7A4E',  /* Olive Green */
+                        darkbg: '#1A1A1A',     /* Soft Black */
+                        lightbg: '#F7F5F0',    /* Earthy Off-White */
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles and transitions */
+        body { font-family: 'Lato', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Lora', serif; }
+        
+        * { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* RTL support for margins/padding */
+        html[dir="rtl"] .ml-auto { margin-left: 0 !important; margin-right: auto !important; }
+        html[dir="rtl"] .ml-3 { margin-left: 0 !important; margin-right: 0.75rem !important; }
+        html[dir="rtl"] .mr-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+        html[dir="rtl"] .pl-4 { padding-left: 0 !important; padding-right: 1rem !important; }
+
+        #sidebar { transition: transform 0.3s ease-in-out; }
+
+        /* Page Content Toggle Classes */
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden bg-[#F7F5F0] dark:bg-[#121212] text-[#1A1A1A] dark:text-[#FFFFFF] transition-colors duration-500">
+
+    <div id="overlay" class="fixed inset-0 bg-[#1A1A1A]/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300"></div>
+
+    <div class="flex h-screen overflow-hidden relative">
+
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 w-72 flex-shrink-0 bg-[#FFFFFF] dark:bg-[#1A1A1A] shadow-2xl lg:shadow-none flex flex-col h-full border-r border-[#6C7A4E]/10 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+
+            <div class="px-6 pt-8 pb-6 flex items-center justify-between border-b border-[#6C7A4E]/10">
+                <a href="index.html" class="flex items-center gap-3 group shrink-0 z-[60]">
+        <div class="w-1.5 h-10 bg-[#C65D3B] rounded-full group-hover:bg-[#6C7A4E] transition-colors duration-300"></div>
+        <div class="flex flex-col">
+          <span class="text-xl font-serif font-black tracking-widest uppercase text-[#1A1A1A] dark:text-[#FFFFFF]">
+            MYCO<span class="text-[#C65D3B]">SPORE</span>
+          </span>
+          <span class="text-[9px] tracking-[0.25em] uppercase text-[#6C7A4E] font-bold leading-none mt-1">Foraging & Education</span>
+        </div>
+      </a>
+                <button id="closeSidebarBtn" class="lg:hidden w-8 h-8 rounded-full flex items-center justify-center bg-[#F7F5F0] dark:bg-[#242424] text-[#C65D3B]">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="lg:hidden px-6 py-4 flex items-center gap-3 border-b border-[#6C7A4E]/10">
+                <button id="mobileRtlToggle" class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-transparent hover:border-[#6C7A4E]">
+                    <i class="fas fa-language"></i>
+                </button>
+                <button id="mobileDarkToggle" class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-transparent hover:border-[#6C7A4E]">
+                    <i id="mobileThemeIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <nav id="sidebar-nav" class="mt-4 flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
+                
+                <a href="javascript:void(0)" onclick="showPage('dashboard', this)" class="nav-link flex items-center px-4 py-3.5 text-sm font-medium rounded-xl bg-[#6C7A4E]/10 dark:bg-[#6C7A4E]/20 text-[#6C7A4E] border border-[#6C7A4E]/20 shadow-sm transition-all">
+                    <i class="fas fa-chart-line w-6 text-lg"></i>
+                    <span class="ml-3 font-bold">System Overview</span>
+                </a>
+                
+                <a href="javascript:void(0)" onclick="showPage('courses', this)" class="nav-link flex items-center px-4 py-3.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-xl hover:bg-[#F7F5F0] dark:hover:bg-[#242424] hover:text-[#6C7A4E] transition-all">
+                    <i class="fas fa-book w-6 text-lg"></i>
+                    <span class="ml-3">Manage Courses</span>
+                </a>
+                
+                <a href="javascript:void(0)" onclick="showPage('verify', this)" class="nav-link flex items-center px-4 py-3.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-xl hover:bg-[#F7F5F0] dark:hover:bg-[#242424] hover:text-[#6C7A4E] transition-all">
+                    <i class="fas fa-check-circle w-6 text-lg"></i>
+                    <span class="ml-3">Log Verification</span>
+                    <span class="ml-auto text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-[#C65D3B] text-white font-bold">12 Pending</span>
+                </a>
+                
+                <a href="javascript:void(0)" onclick="showPage('users', this)" class="nav-link flex items-center px-4 py-3.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-xl hover:bg-[#F7F5F0] dark:hover:bg-[#242424] hover:text-[#6C7A4E] transition-all">
+                    <i class="fas fa-users w-6 text-lg"></i>
+                    <span class="ml-3">User Database</span>
+                </a>
+                
+                <a href="javascript:void(0)" onclick="showPage('settings', this)" class="nav-link flex items-center px-4 py-3.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-xl hover:bg-[#F7F5F0] dark:hover:bg-[#242424] hover:text-[#6C7A4E] transition-all">
+                    <i class="fas fa-cog w-6 text-lg"></i>
+                    <span class="ml-3">Global Settings</span>
+                </a>
+
+                <div class="border-t border-[#6C7A4E]/10 my-4"></div>
+
+                <a href="login.html" class="flex items-center px-4 py-3.5 text-sm font-medium text-[#C65D3B] rounded-xl hover:bg-[#C65D3B]/10 transition-colors">
+                    <i class="fas fa-sign-out-alt w-6"></i>
+                    <span class="ml-3">Admin Logout</span>
+                </a>
+            </nav>
+
+            <div class="p-5 mt-auto border-t border-[#6C7A4E]/10 flex items-center bg-[#F7F5F0] dark:bg-[#1A1A1A]">
+                <div class="w-10 h-10 rounded-full bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] flex items-center justify-center font-bold font-serif">A</div>
+                <div class="ml-3">
+                    <p class="text-sm font-serif font-bold text-[#1A1A1A] dark:text-white">Admin Portal</p>
+                    <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Master Access</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col overflow-y-auto w-full">
+
+            <header class="bg-[#FFFFFF]/90 dark:bg-[#1A1A1A]/90 backdrop-blur-md border-b border-[#6C7A4E]/10 px-6 py-4 sticky top-0 z-30 flex items-center justify-between shadow-sm">
+                <div>
+                    <h1 id="mainTitle" class="text-xl md:text-2xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF]">System Overview</h1>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="index.html" target="_blank" class="hidden sm:flex px-4 py-2 bg-transparent border border-[#6C7A4E]/30 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-[#6C7A4E] hover:text-white hover:border-[#6C7A4E] transition-colors">View Live Site</a>
+                    
+                    <div class="hidden lg:flex items-center gap-2 border-l border-[#6C7A4E]/20 pl-3">
+                        <button id="desktopRtlToggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
+                            <span class="text-[10px] font-bold uppercase">RTL</span>
+                        </button>
+                        <button id="desktopDarkToggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
+                            <i id="desktopThemeIcon" class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <button id="hamburgerBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-md bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] shadow-md">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="p-6 lg:p-10 space-y-8 max-w-7xl mx-auto w-full">
+
+                <div id="page-dashboard" class="page-content active space-y-8">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Total Revenue</p>
+                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">$24,590</h3>
+                            <p class="text-xs text-green-600 font-bold mt-2"><i class="fas fa-arrow-up"></i> 12% this month</p>
+                        </div>
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Active Students</p>
+                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">5,204</h3>
+                            <p class="text-xs text-green-600 font-bold mt-2"><i class="fas fa-arrow-up"></i> 45 new this week</p>
+                        </div>
+                        <div class="bg-[#C65D3B] rounded-2xl p-6 shadow-md relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <p class="text-xs uppercase tracking-widest text-white/80 font-bold mb-2">Logs Awaiting ID</p>
+                            <h3 class="text-3xl font-black font-serif text-white">12</h3>
+                            <p class="text-xs text-white font-bold mt-2"><i class="fas fa-exclamation-circle"></i> Requires Expert Review</p>
+                        </div>
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Live Courses</p>
+                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">18</h3>
+                            <p class="text-xs text-gray-500 font-bold mt-2">2 currently in draft</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        
+                        <div class="lg:col-span-2 bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm">
+                            <div class="flex items-center justify-between mb-6 border-b border-[#6C7A4E]/10 pb-4">
+                                <h2 class="text-xl font-serif font-bold">Recent Enrollments</h2>
+                                <button class="text-xs font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white">Export CSV</button>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="text-gray-500 text-xs uppercase tracking-widest">
+                                        <tr>
+                                            <th class="pb-3 font-bold">Student</th>
+                                            <th class="pb-3 font-bold">Course</th>
+                                            <th class="pb-3 font-bold">Date</th>
+                                            <th class="pb-3 font-bold">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-[#6C7A4E]/10">
+                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">Michael T.</td>
+                                            <td class="py-4 text-gray-600 dark:text-gray-400"> Liquid Cultures</td>
+                                            <td class="py-4 text-gray-500">10:24 AM</td>
+                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">Elena R.</td>
+                                            <td class="py-4 text-gray-600 dark:text-gray-400">Foraging 101</td>
+                                            <td class="py-4 text-gray-500">Yesterday</td>
+                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">David K.</td>
+                                            <td class="py-4 text-gray-600 dark:text-gray-400"> Agar & Cloning</td>
+                                            <td class="py-4 text-gray-500">Oct 14, 2024</td>
+                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden">
+                            <h2 class="text-xl font-serif font-bold mb-6">Quick Actions</h2>
+                            <div class="space-y-3">
+                                <button onclick="showPage('courses', document.querySelectorAll('.nav-link')[1])" class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-lg text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-plus text-[#6C7A4E] mr-2"></i> Create New Course</span>
+                                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E]"></i>
+                                </button>
+                                <button onclick="showPage('verify', document.querySelectorAll('.nav-link')[2])" class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#C65D3B]/40 rounded-lg text-left flex items-center justify-between hover:border-[#C65D3B] transition-colors group">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-check-double text-[#C65D3B] mr-2"></i> Verify Submissions</span>
+                                    <span class="bg-[#C65D3B] text-white text-[10px] px-2 py-0.5 rounded-full font-bold">12</span>
+                                </button>
+                                <button class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-lg text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
+                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-bullhorn text-[#6C7A4E] mr-2"></i> Post Announcement</span>
+                                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-courses" class="page-content space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <button class="px-5 py-2 text-xs font-bold uppercase tracking-widest bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] rounded-md shadow-md">Published (18)</button>
+                            <button class="px-5 py-2 text-xs font-bold uppercase tracking-widest bg-[#FFFFFF] dark:bg-[#242424] text-gray-600 border border-[#6C7A4E]/20 rounded-md hover:border-[#6C7A4E]">Drafts (2)</button>
+                        </div>
+                        <button class="w-full sm:w-auto px-6 py-2.5 bg-[#6C7A4E] text-white rounded-md font-bold text-xs uppercase tracking-widest shadow-md hover:bg-[#C65D3B] transition-colors">
+                            + Create Course
+                        </button>
+                    </div>
+
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-[#F7F5F0] dark:bg-[#1A1A1A] text-gray-500 text-xs uppercase tracking-widest">
+                                    <tr>
+                                        <th class="px-6 py-4 font-bold">Course Title</th>
+                                        <th class="px-6 py-4 font-bold">Category</th>
+                                        <th class="px-6 py-4 font-bold">Enrolled</th>
+                                        <th class="px-6 py-4 font-bold">Price</th>
+                                        <th class="px-6 py-4 font-bold text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-[#6C7A4E]/10">
+                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="images\img10.avif" class="w-10 h-10 rounded object-cover">
+                                                <span class="font-bold text-[#1A1A1A] dark:text-white">Foraging 101: The Safe Dozen</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-600 dark:text-gray-400">Field Identification</td>
+                                        <td class="px-6 py-4 font-bold">1,204</td>
+                                        <td class="px-6 py-4 font-bold text-[#6C7A4E]">$49.99</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-400 hover:text-[#6C7A4E] mx-1"><i class="fas fa-edit"></i></button>
+                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="images\img9.avif" class="w-10 h-10 rounded object-cover">
+                                                <span class="font-bold text-[#1A1A1A] dark:text-white">Mastering Liquid Cultures</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-600 dark:text-gray-400">Lab Cultivation</td>
+                                        <td class="px-6 py-4 font-bold">850</td>
+                                        <td class="px-6 py-4 font-bold text-[#6C7A4E]">$89.99</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-400 hover:text-[#6C7A4E] mx-1"><i class="fas fa-edit"></i></button>
+                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-verify" class="page-content">
+                    <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                            <h2 class="text-2xl font-serif font-bold text-[#1A1A1A] dark:text-white">Expert Verification Queue</h2>
+                            <p class="text-sm text-gray-500">Review community submissions for safety and accuracy.</p>
+                        </div>
+                        <div class="text-sm font-bold bg-[#C65D3B]/10 text-[#C65D3B] px-4 py-2 rounded-lg border border-[#C65D3B]/20">
+                            12 Submissions Pending
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-xl overflow-hidden border border-[#6C7A4E]/20 shadow-lg">
+                            <div class="relative aspect-square">
+                                <img src="images\img13.avif" class="w-full h-full object-cover">
+                                <div class="absolute top-0 left-0 w-full p-3 bg-gradient-to-b from-black/70 to-transparent">
+                                    <p class="text-white text-xs font-bold"><i class="fas fa-user mr-1"></i> User: @ForagerDan</p>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-1">User Suggestion:</p>
+                                <h3 class="font-serif font-bold text-lg mb-4 text-[#1A1A1A] dark:text-white border-b border-[#6C7A4E]/10 pb-2">"Caesar's Mushroom?"</h3>
+                                
+                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Admin Tag Correction:</label>
+                                <input type="text" value="Amanita muscaria" class="w-full bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-gray-300 dark:border-gray-700 text-sm p-2 rounded mb-4 font-serif italic text-red-500 font-bold outline-none">
+                                
+                                <div class="flex gap-2">
+                                    <button class="flex-1 py-2 bg-[#6C7A4E] text-white text-xs font-bold uppercase rounded hover:bg-green-700 transition-colors">Verify Edible</button>
+                                    <button class="flex-1 py-2 bg-[#C65D3B] text-white text-xs font-bold uppercase rounded hover:bg-red-700 transition-colors">Flag Toxic</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-xl overflow-hidden border border-[#6C7A4E]/20 shadow-lg">
+                            <div class="relative aspect-square">
+                                <img src="images\img17.avif" class="w-full h-full object-cover">
+                                <div class="absolute top-0 left-0 w-full p-3 bg-gradient-to-b from-black/70 to-transparent">
+                                    <p class="text-white text-xs font-bold"><i class="fas fa-user mr-1"></i> User: @NatureWalker</p>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-1">User Suggestion:</p>
+                                <h3 class="font-serif font-bold text-lg mb-4 text-[#1A1A1A] dark:text-white border-b border-[#6C7A4E]/10 pb-2">"Black Morel"</h3>
+                                
+                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Admin Tag Correction:</label>
+                                <input type="text" value="Morchella elata" class="w-full bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-gray-300 dark:border-gray-700 text-sm p-2 rounded mb-4 font-serif italic text-green-600 font-bold outline-none">
+                                
+                                <div class="flex gap-2">
+                                    <button class="flex-1 py-2 bg-[#6C7A4E] text-white text-xs font-bold uppercase rounded hover:bg-green-700 transition-colors">Verify Edible</button>
+                                    <button class="flex-1 py-2 bg-[#C65D3B] text-white text-xs font-bold uppercase rounded hover:bg-red-700 transition-colors">Flag Toxic</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="page-users" class="page-content space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+                        <div class="relative w-full sm:w-72">
+                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" placeholder="Search users by email or name..." class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[#6C7A4E]/30 bg-[#FFFFFF] dark:bg-[#242424] focus:outline-none focus:border-[#6C7A4E]">
+                        </div>
+                        <button class="w-full sm:w-auto px-6 py-2.5 border-2 border-[#1A1A1A] dark:border-white text-[#1A1A1A] dark:text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-[#1A1A1A] hover:text-white dark:hover:bg-white dark:hover:text-[#1A1A1A] transition-colors">
+                            Export Users
+                        </button>
+                    </div>
+
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-[#F7F5F0] dark:bg-[#1A1A1A] text-gray-500 text-xs uppercase tracking-widest">
+                                    <tr>
+                                        <th class="px-6 py-4 font-bold">User</th>
+                                        <th class="px-6 py-4 font-bold">Role</th>
+                                        <th class="px-6 py-4 font-bold">Joined</th>
+                                        <th class="px-6 py-4 font-bold text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-[#6C7A4E]/10">
+                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-8 h-8 rounded-full bg-[#6C7A4E]/20 text-[#6C7A4E] flex items-center justify-center font-bold">S</div>
+                                                <div>
+                                                    <p class="font-bold text-[#1A1A1A] dark:text-white">Sarah Jenkins</p>
+                                                    <p class="text-xs text-gray-500">sarah.j@example.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase rounded">Student</span></td>
+                                        <td class="px-6 py-4 text-gray-500">Jan 12, 2024</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-400 hover:text-[#1A1A1A] dark:hover:text-white mx-1"><i class="fas fa-eye"></i></button>
+                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-ban"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-8 h-8 rounded-full bg-[#C65D3B]/20 text-[#C65D3B] flex items-center justify-center font-bold">A</div>
+                                                <div>
+                                                    <p class="font-bold text-[#1A1A1A] dark:text-white">Aris Thorne</p>
+                                                    <p class="text-xs text-gray-500">aris@mycospore.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4"><span class="px-2 py-1 bg-purple-100 text-purple-700 text-[10px] font-bold uppercase rounded">Instructor</span></td>
+                                        <td class="px-6 py-4 text-gray-500">Oct 01, 2023</td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-400 hover:text-[#1A1A1A] dark:hover:text-white mx-1"><i class="fas fa-eye"></i></button>
+                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-ban"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-settings" class="page-content">
+                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 max-w-3xl mx-auto overflow-hidden shadow-sm">
+                        
+                        <div class="p-8 border-b border-[#6C7A4E]/10 bg-[#F7F5F0] dark:bg-[#1A1A1A]">
+                            <h2 class="text-2xl font-serif font-black text-[#1A1A1A] dark:text-white">Global Site Settings</h2>
+                            <p class="text-sm text-gray-500">Manage platform configurations and admin details.</p>
+                        </div>
+
+                        <div class="p-8 space-y-6">
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-[#6C7A4E] mb-4 border-b border-[#6C7A4E]/10 pb-2">Admin Profile</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">System Name</label>
+                                    <input type="text" value="Master Admin" class="w-full px-4 py-3 rounded-md bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 focus:border-[#1A1A1A] outline-none transition-all dark:text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Contact Email</label>
+                                    <input type="email" value="admin@mycospore.com" class="w-full px-4 py-3 rounded-md bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 focus:border-[#1A1A1A] outline-none transition-all dark:text-white">
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-[#6C7A4E] mb-4 border-b border-[#6C7A4E]/10 pb-2 mt-8">Platform Toggles</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-sm font-bold text-[#1A1A1A] dark:text-white">Enable Public Registration</span>
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-[#6C7A4E] focus:ring-[#6C7A4E]" checked>
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-sm font-bold text-[#1A1A1A] dark:text-white">Auto-Publish Verified Logs</span>
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-[#6C7A4E] focus:ring-[#6C7A4E]" checked>
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-sm font-bold text-[#1A1A1A] dark:text-white">Maintenance Mode</span>
+                                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-[#C65D3B] focus:ring-[#C65D3B]">
+                                </label>
+                            </div>
+
+                            <div class="pt-8 flex justify-end gap-4">
+                                <button class="px-6 py-3 rounded-md bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] font-bold text-xs uppercase tracking-widest shadow-lg hover:opacity-80 transition-all">Save Configuration</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        /* ===============================
+           TAB SWITCHING LOGIC
+        ================================ */
+        function showPage(pageId, element) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            document.getElementById('page-' + pageId).classList.add('active');
+
+            // Update Header Title
+            const titles = {
+                'dashboard': 'System Overview',
+                'courses': 'Course Management',
+                'verify': 'Expert Log Verification',
+                'users': 'User Database',
+                'settings': 'Global Settings'
+            };
+            document.getElementById('mainTitle').innerText = titles[pageId];
+
+            // Reset Nav Styling
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-[#6C7A4E]/10', 'dark:bg-[#6C7A4E]/20', 'text-[#6C7A4E]', 'border-[#6C7A4E]/20', 'shadow-sm');
+                link.classList.add('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+                link.querySelector('span:first-of-type').classList.remove('font-bold');
+            });
+
+            // Set Active Nav Styling
+            if(element) {
+                element.classList.add('bg-[#6C7A4E]/10', 'dark:bg-[#6C7A4E]/20', 'text-[#6C7A4E]', 'border-[#6C7A4E]/20', 'shadow-sm');
+                element.classList.remove('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+                element.querySelector('span:first-of-type').classList.add('font-bold');
+            }
+
+            // Close sidebar on mobile after clicking
+            if (window.innerWidth < 1024) closeSidebar();
+        }
+
+        /* ===============================
+           SIDEBAR, THEME & RTL LOGIC
+        ================================ */
+        const htmlElement = document.documentElement;
+        const desktopThemeBtn = document.getElementById("desktopDarkToggle");
+        const desktopThemeIcon = document.getElementById("desktopThemeIcon");
+        const desktopRtlBtn = document.getElementById("desktopRtlToggle");
+        
+        const mobileThemeBtn = document.getElementById("mobileDarkToggle");
+        const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+        const mobileRtlBtn = document.getElementById("mobileRtlToggle");
+        
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+
+        // Theme initialization
+        function applyTheme() {
+            let theme = localStorage.getItem('myco-admin-dark') === 'true';
+            if (theme) {
+                htmlElement.classList.add('dark');
+                if (desktopThemeIcon) desktopThemeIcon.className = 'fas fa-sun text-yellow-500';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun text-yellow-500';
+            } else {
+                htmlElement.classList.remove('dark');
+                if (desktopThemeIcon) desktopThemeIcon.className = 'fas fa-moon';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.classList.toggle('dark');
+            localStorage.setItem('myco-admin-dark', isDark);
+            applyTheme();
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        // RTL Logic
+        function toggleRTL() {
+            const currentDir = htmlElement.getAttribute("dir");
+            const newDir = currentDir === "rtl" ? "ltr" : "rtl";
+            htmlElement.setAttribute("dir", newDir);
+            localStorage.setItem("myco-admin-rtl", newDir);
+        }
+
+        if (desktopRtlBtn) desktopRtlBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlBtn) mobileRtlBtn.addEventListener('click', toggleRTL);
+
+        // Sidebar Logic for Mobile
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+
+        // Init page load
+        applyTheme();
+        const savedRTL = localStorage.getItem("myco-admin-rtl");
+        if (savedRTL) htmlElement.setAttribute("dir", savedRTL);
+    </script>
+</body>
+</html>

@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <a href="guide.html" class="mobile-link py-4 border-b border-[#6C7A4E20] text-[#1A1A1A] dark:text-[#FFFFFF]">Field Guide</a>
         <a href="courses.html" class="mobile-link py-4 border-b border-[#6C7A4E20] text-[#1A1A1A] dark:text-[#FFFFFF]">Courses</a>
         <a href="community.html" class="mobile-link py-4 border-b border-[#6C7A4E20] text-[#1A1A1A] dark:text-[#FFFFFF]">Community</a>
-        <a href="contact.html" class="mobile-link py-4 border-b border-[#6C7A4E20] text-[#1A1A1A] dark:text-[#FFFFFF]">contact</a>
+        <a href="contact.html" class="mobile-link py-4 border-b border-[#6C7A4E20] text-[#1A1A1A] dark:text-[#FFFFFF]">Contact</a>
 
         <div class="w-full border-b border-[#6C7A4E20]">
           <button id="mobileDashboardBtn" class="flex items-center justify-between w-full py-4 text-[#1A1A1A] dark:text-[#FFFFFF]">

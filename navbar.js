@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover/dash:rotate-180 text-[#6C7A4E]"></i>
           </button>
           <div id="dashboardMenu" class="hidden absolute left-0 mt-2 w-56 bg-[#F7F5F0] dark:bg-[#242424] rounded-md shadow-xl py-2 z-50 border border-[#6C7A4E30]">
-            <a href="user.html" class="dropdown-link block px-4 py-2 text-sm text-[#1A1A1A] dark:text-gray-200 hover:bg-[#6C7A4E15] hover:text-[#6C7A4E]"><i class="fas fa-chart-line w-5"></i> User</a>
-            <a href="admin.html" class="dropdown-link block px-4 py-2 text-sm text-[#1A1A1A] dark:text-gray-200 hover:bg-[#6C7A4E15] hover:text-[#6C7A4E]"><i class="fas fa-book-open w-5"></i> Admin</a>
+            <a href="user.html" class="dropdown-link block px-4 py-2 text-sm text-[#1A1A1A] dark:text-gray-200 hover:bg-[#6C7A4E15] hover:text-[#6C7A4E]"> User</a>
+            <a href="admin.html" class="dropdown-link block px-4 py-2 text-sm text-[#1A1A1A] dark:text-gray-200 hover:bg-[#6C7A4E15] hover:text-[#6C7A4E]"> Admin</a>
             </div>
         </div>
       </div>
@@ -107,8 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <i id="mobileDashboardIcon" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
           </button>
           <div id="mobileDashboardMenu" class="hidden flex-col bg-[#6C7A4E08] border-l-2 border-[#6C7A4E] ml-2 mb-2 rounded-r-md">
-            <a href="user.html" class="mobile-sublink px-6 py-3 text-[#1A1A1A] dark:text-gray-300"><i class="fas fa-chart-line w-5 text-[#C65D3B]"></i> User</a>
-            <a href="admin.html" class="mobile-sublink px-6 py-3 text-[#1A1A1A] dark:text-gray-300"><i class="fas fa-book-open w-5 text-[#C65D3B]"></i> Admin</a>
+            <a href="user.html" class="mobile-sublink px-6 py-3 text-[#1A1A1A] dark:text-gray-300"> User</a>
+            <a href="admin.html" class="mobile-sublink px-6 py-3 text-[#1A1A1A] dark:text-gray-300"> Admin</a>
            </div>
         </div>
 

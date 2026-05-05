@@ -131,14 +131,6 @@
                     <span class="ml-3">Admin Logout</span>
                 </a>
             </nav>
-
-            <div class="p-5 mt-auto border-t border-[#6C7A4E]/10 flex items-center bg-[#F7F5F0] dark:bg-[#1A1A1A]">
-                <div class="w-10 h-10 rounded-full bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] flex items-center justify-center font-bold font-serif">A</div>
-                <div class="ml-3">
-                    <p class="text-sm font-serif font-bold text-[#1A1A1A] dark:text-white">Admin Portal</p>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Master Access</p>
-                </div>
-            </div>
         </aside>
 
         <main class="flex-1 flex flex-col overflow-y-auto w-full">
@@ -148,15 +140,21 @@
                     <h1 id="mainTitle" class="text-xl md:text-2xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF]">System Overview</h1>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <a href="index.html" target="_blank" class="hidden sm:flex px-4 py-2 bg-transparent border border-[#6C7A4E]/30 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-[#6C7A4E] hover:text-white hover:border-[#6C7A4E] transition-colors">View Live Site</a>
-                    
-                    <div class="hidden lg:flex items-center gap-2 border-l border-[#6C7A4E]/20 pl-3">
-                        <button id="desktopRtlToggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
-                            <span class="text-[10px] font-bold uppercase">RTL</span>
+                <div class="flex items-center gap-3 md:gap-5">
+                    <div class="flex items-center gap-3 px-3 py-1.5 bg-[#F7F5F0] dark:bg-[#242424] rounded-full border border-[#6C7A4E]/10 hover:border-[#6C7A4E]/30 transition-all cursor-pointer shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] flex items-center justify-center font-bold font-serif text-sm border border-[#6C7A4E]/20">A</div>
+                        <div class="hidden sm:block text-left">
+                            <p class="text-xs font-serif font-bold text-[#1A1A1A] dark:text-white leading-tight">Admin Portal</p>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest leading-tight">Master Access</p>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center gap-2 border-l border-[#6C7A4E]/20 pl-3 md:pl-5">
+                        <button id="desktopRtlToggle" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
+                            <span class="text-[9px] font-bold uppercase">RTL</span>
                         </button>
-                        <button id="desktopDarkToggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
-                            <i id="desktopThemeIcon" class="fas fa-moon"></i>
+                        <button id="desktopDarkToggle" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F7F5F0] dark:bg-[#242424] text-[#6C7A4E] border border-[#6C7A4E]/20 hover:border-[#C65D3B] hover:text-[#C65D3B] transition-all">
+                            <i id="desktopThemeIcon" class="fas fa-moon text-sm"></i>
                         </button>
                     </div>
                     <button id="hamburgerBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-md bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] shadow-md">
@@ -167,156 +165,240 @@
 
             <div class="p-6 lg:p-10 space-y-8 max-w-7xl mx-auto w-full">
 
+               
+
                 <div id="page-dashboard" class="page-content active space-y-8">
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
-                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Total Revenue</p>
-                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">$24,590</h3>
-                            <p class="text-xs text-green-600 font-bold mt-2"><i class="fas fa-arrow-up"></i> 12% this month</p>
-                        </div>
-                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
-                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Active Students</p>
-                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">5,204</h3>
-                            <p class="text-xs text-green-600 font-bold mt-2"><i class="fas fa-arrow-up"></i> 45 new this week</p>
-                        </div>
-                        <div class="bg-[#C65D3B] rounded-2xl p-6 shadow-md relative overflow-hidden group">
-                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                            <p class="text-xs uppercase tracking-widest text-white/80 font-bold mb-2">Logs Awaiting ID</p>
-                            <h3 class="text-3xl font-black font-serif text-white">12</h3>
-                            <p class="text-xs text-white font-bold mt-2"><i class="fas fa-exclamation-circle"></i> Requires Expert Review</p>
-                        </div>
-                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
-                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-[#6C7A4E]/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Live Courses</p>
-                            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white">18</h3>
-                            <p class="text-xs text-gray-500 font-bold mt-2">2 currently in draft</p>
-                        </div>
+    
+    <div class="bg-gradient-to-r from-[#6C7A4E] to-[#4A5536] rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div class="relative z-10">
+            <h2 class="text-2xl md:text-3xl font-serif font-black mb-2">Welcome back, Admin</h2>
+            <p class="text-white/80 text-sm max-w-xl leading-relaxed">
+                Here's what's happening in the MycoSpore Academy today. You have <strong class="text-white">12 pending logs</strong> requiring expert identification and <strong class="text-white">45 new enrollments</strong> this week.
+            </p>
+        </div>
+        <div class="relative z-10 shrink-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 flex items-center gap-4 w-full md:w-auto">
+            <div class="w-12 h-12 rounded-full bg-[#C65D3B] flex items-center justify-center text-xl shadow-inner shrink-0">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase tracking-widest text-white/70 font-bold mb-1">Active Season</p>
+                <p class="font-serif font-bold text-lg leading-none">Autumn Foraging</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Total Revenue</p>
+                <div class="w-8 h-8 rounded-full bg-[#6C7A4E]/10 text-[#6C7A4E] flex items-center justify-center"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white mb-1">$24,590</h3>
+            <div class="flex items-center gap-2 text-xs font-bold text-green-600">
+                <i class="fas fa-arrow-up"></i> <span>12% from last month</span>
+            </div>
+        </div>
+
+        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Active Students</p>
+                <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center"><i class="fas fa-user-graduate"></i></div>
+            </div>
+            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white mb-1">5,204</h3>
+            <div class="flex items-center gap-2 text-xs font-bold text-green-600">
+                <i class="fas fa-arrow-up"></i> <span>45 new this week</span>
+            </div>
+        </div>
+
+        <div class="bg-[#C65D3B] rounded-2xl p-6 shadow-md relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <p class="text-[10px] uppercase tracking-widest text-white/80 font-bold">Logs Awaiting ID</p>
+                <div class="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center"><i class="fas fa-magnifying-glass"></i></div>
+            </div>
+            <h3 class="text-3xl font-black font-serif text-white mb-1 relative z-10">12</h3>
+            <div class="flex items-center gap-2 text-xs font-bold text-white/90 relative z-10">
+                <i class="fas fa-exclamation-circle"></i> <span>Requires expert review</span>
+            </div>
+        </div>
+
+        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden group">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Live Courses</p>
+                <div class="w-8 h-8 rounded-full bg-[#6C7A4E]/10 text-[#6C7A4E] flex items-center justify-center"><i class="fas fa-video"></i></div>
+            </div>
+            <h3 class="text-3xl font-black font-serif text-[#1A1A1A] dark:text-white mb-1">18</h3>
+            <div class="flex items-center gap-2 text-xs font-bold text-gray-500">
+                <i class="fas fa-pen-nib"></i> <span>2 currently in draft</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        
+        <div class="xl:col-span-2 bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-6 border-b border-[#6C7A4E]/10 pb-4">
+                <h2 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-white">Top Performing Courses</h2>
+                <button class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white transition-colors">View Report</button>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-[#1A1A1A] dark:text-white">Foraging 101: The Safe Dozen</span>
+                        <span class="text-gray-500 font-bold">1,204 Students</span>
                     </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        
-                        <div class="lg:col-span-2 bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm">
-                            <div class="flex items-center justify-between mb-6 border-b border-[#6C7A4E]/10 pb-4">
-                                <h2 class="text-xl font-serif font-bold">Recent Enrollments</h2>
-                                <button class="text-xs font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white">Export CSV</button>
-                            </div>
-                            
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-sm">
-                                    <thead class="text-gray-500 text-xs uppercase tracking-widest">
-                                        <tr>
-                                            <th class="pb-3 font-bold">Student</th>
-                                            <th class="pb-3 font-bold">Course</th>
-                                            <th class="pb-3 font-bold">Date</th>
-                                            <th class="pb-3 font-bold">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-[#6C7A4E]/10">
-                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
-                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">Michael T.</td>
-                                            <td class="py-4 text-gray-600 dark:text-gray-400"> Liquid Cultures</td>
-                                            <td class="py-4 text-gray-500">10:24 AM</td>
-                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
-                                        </tr>
-                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
-                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">Elena R.</td>
-                                            <td class="py-4 text-gray-600 dark:text-gray-400">Foraging 101</td>
-                                            <td class="py-4 text-gray-500">Yesterday</td>
-                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
-                                        </tr>
-                                        <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
-                                            <td class="py-4 font-bold text-[#1A1A1A] dark:text-white">David K.</td>
-                                            <td class="py-4 text-gray-600 dark:text-gray-400"> Agar & Cloning</td>
-                                            <td class="py-4 text-gray-500">Oct 14, 2024</td>
-                                            <td class="py-4"><span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold uppercase rounded">Paid</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden">
-                            <h2 class="text-xl font-serif font-bold mb-6">Quick Actions</h2>
-                            <div class="space-y-3">
-                                <button onclick="showPage('courses', document.querySelectorAll('.nav-link')[1])" class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-lg text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
-                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-plus text-[#6C7A4E] mr-2"></i> Create New Course</span>
-                                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E]"></i>
-                                </button>
-                                <button onclick="showPage('verify', document.querySelectorAll('.nav-link')[2])" class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#C65D3B]/40 rounded-lg text-left flex items-center justify-between hover:border-[#C65D3B] transition-colors group">
-                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-check-double text-[#C65D3B] mr-2"></i> Verify Submissions</span>
-                                    <span class="bg-[#C65D3B] text-white text-[10px] px-2 py-0.5 rounded-full font-bold">12</span>
-                                </button>
-                                <button class="w-full py-3 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-lg text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
-                                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-bullhorn text-[#6C7A4E] mr-2"></i> Post Announcement</span>
-                                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E]"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="w-full bg-[#F7F5F0] dark:bg-[#1A1A1A] rounded-full h-2.5 overflow-hidden">
+                        <div class="bg-[#6C7A4E] h-2.5 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
-
-                <div id="page-courses" class="page-content space-y-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-                        <div class="flex gap-2 w-full sm:w-auto">
-                            <button class="px-5 py-2 text-xs font-bold uppercase tracking-widest bg-[#1A1A1A] dark:bg-white text-white dark:text-[#1A1A1A] rounded-md shadow-md">Published (18)</button>
-                            <button class="px-5 py-2 text-xs font-bold uppercase tracking-widest bg-[#FFFFFF] dark:bg-[#242424] text-gray-600 border border-[#6C7A4E]/20 rounded-md hover:border-[#6C7A4E]">Drafts (2)</button>
-                        </div>
-                        <button class="w-full sm:w-auto px-6 py-2.5 bg-[#6C7A4E] text-white rounded-md font-bold text-xs uppercase tracking-widest shadow-md hover:bg-[#C65D3B] transition-colors">
-                            + Create Course
-                        </button>
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-[#1A1A1A] dark:text-white">Mastering Liquid Cultures</span>
+                        <span class="text-gray-500 font-bold">850 Students</span>
                     </div>
-
-                    <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/20 overflow-hidden shadow-sm">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left text-sm">
-                                <thead class="bg-[#F7F5F0] dark:bg-[#1A1A1A] text-gray-500 text-xs uppercase tracking-widest">
-                                    <tr>
-                                        <th class="px-6 py-4 font-bold">Course Title</th>
-                                        <th class="px-6 py-4 font-bold">Category</th>
-                                        <th class="px-6 py-4 font-bold">Enrolled</th>
-                                        <th class="px-6 py-4 font-bold">Price</th>
-                                        <th class="px-6 py-4 font-bold text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-[#6C7A4E]/10">
-                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="images\img10.avif" class="w-10 h-10 rounded object-cover">
-                                                <span class="font-bold text-[#1A1A1A] dark:text-white">Foraging 101: The Safe Dozen</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 text-gray-600 dark:text-gray-400">Field Identification</td>
-                                        <td class="px-6 py-4 font-bold">1,204</td>
-                                        <td class="px-6 py-4 font-bold text-[#6C7A4E]">$49.99</td>
-                                        <td class="px-6 py-4 text-right">
-                                            <button class="text-gray-400 hover:text-[#6C7A4E] mx-1"><i class="fas fa-edit"></i></button>
-                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors">
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="images\img9.avif" class="w-10 h-10 rounded object-cover">
-                                                <span class="font-bold text-[#1A1A1A] dark:text-white">Mastering Liquid Cultures</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 text-gray-600 dark:text-gray-400">Lab Cultivation</td>
-                                        <td class="px-6 py-4 font-bold">850</td>
-                                        <td class="px-6 py-4 font-bold text-[#6C7A4E]">$89.99</td>
-                                        <td class="px-6 py-4 text-right">
-                                            <button class="text-gray-400 hover:text-[#6C7A4E] mx-1"><i class="fas fa-edit"></i></button>
-                                            <button class="text-gray-400 hover:text-[#C65D3B] mx-1"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="w-full bg-[#F7F5F0] dark:bg-[#1A1A1A] rounded-full h-2.5 overflow-hidden">
+                        <div class="bg-[#6C7A4E] h-2.5 rounded-full opacity-80" style="width: 60%"></div>
                     </div>
                 </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-[#1A1A1A] dark:text-white">Advanced Agar Techniques</span>
+                        <span class="text-gray-500 font-bold">420 Students</span>
+                    </div>
+                    <div class="w-full bg-[#F7F5F0] dark:bg-[#1A1A1A] rounded-full h-2.5 overflow-hidden">
+                        <div class="bg-[#C65D3B] h-2.5 rounded-full" style="width: 35%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm relative overflow-hidden">
+            <h2 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-white mb-6 border-b border-[#6C7A4E]/10 pb-4">Quick Actions</h2>
+            <div class="space-y-3">
+                <button onclick="showPage('courses', document.querySelectorAll('.nav-link')[1])" class="w-full py-3.5 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-xl text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
+                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-plus text-[#6C7A4E] w-6"></i> Create Course</span>
+                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E] transition-colors"></i>
+                </button>
+                <button onclick="showPage('verify', document.querySelectorAll('.nav-link')[2])" class="w-full py-3.5 px-4 bg-[#C65D3B]/5 dark:bg-[#C65D3B]/10 border border-[#C65D3B]/30 rounded-xl text-left flex items-center justify-between hover:border-[#C65D3B] transition-colors group">
+                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-check-double text-[#C65D3B] w-6"></i> Verify Logs</span>
+                    <span class="bg-[#C65D3B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-sm">12</span>
+                </button>
+                <button class="w-full py-3.5 px-4 bg-[#F7F5F0] dark:bg-[#1A1A1A] border border-[#6C7A4E]/20 rounded-xl text-left flex items-center justify-between hover:border-[#6C7A4E] transition-colors group">
+                    <span class="font-bold text-sm text-[#1A1A1A] dark:text-white"><i class="fas fa-bullhorn text-[#6C7A4E] w-6"></i> Post Announcement</span>
+                    <i class="fas fa-chevron-right text-xs text-gray-400 group-hover:text-[#6C7A4E] transition-colors"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+   <div class="bg-[#FFFFFF] dark:bg-[#242424] rounded-2xl p-6 md:p-8 border border-[#6C7A4E]/20 shadow-sm">
+    <div class="flex items-center justify-between mb-6 border-b border-[#6C7A4E]/10 pb-4">
+        <h2 class="text-xl font-serif font-bold text-[#1A1A1A] dark:text-white">Recent Enrollments</h2>
+        <button class="text-[10px] font-bold uppercase tracking-widest text-[#6C7A4E] hover:text-[#1A1A1A] dark:hover:text-white transition-colors">Export CSV</button>
+    </div>
+    
+    <div class="overflow-x-auto no-scrollbar">
+        <table class="w-full text-left text-sm block md:table">
+            
+            <thead class="hidden md:table-header-group text-gray-500 text-[10px] uppercase tracking-widest">
+                <tr>
+                    <th class="pb-4 font-bold">Student</th>
+                    <th class="pb-4 font-bold">Course Enrolled</th>
+                    <th class="pb-4 font-bold">Time / Date</th>
+                    <th class="pb-4 font-bold">Status</th>
+                </tr>
+            </thead>
+
+            <tbody class="block md:table-row-group divide-y divide-[#6C7A4E]/10">
+                
+                <tr class="block md:table-row hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors py-4 md:py-0">
+                    <td class="block md:table-cell py-2 md:py-4 mb-2 md:mb-0">
+                        <div class="flex items-center gap-3 font-bold text-[#1A1A1A] dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-[#6C7A4E]/20 text-[#6C7A4E] flex items-center justify-center text-xs shrink-0">M</div>
+                            Michael T.
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-600 dark:text-gray-400">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Course</span>
+                            <span class="text-right md:text-left">Liquid Cultures</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-500">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Date</span>
+                            <span class="text-right md:text-left">10:24 AM</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Status</span>
+                            <span class="px-2.5 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold uppercase rounded-md border border-green-200 dark:border-green-800">Paid</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="block md:table-row hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors py-4 md:py-0">
+                    <td class="block md:table-cell py-2 md:py-4 mb-2 md:mb-0">
+                        <div class="flex items-center gap-3 font-bold text-[#1A1A1A] dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-[#C65D3B]/20 text-[#C65D3B] flex items-center justify-center text-xs shrink-0">E</div>
+                            Elena R.
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-600 dark:text-gray-400">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Course</span>
+                            <span class="text-right md:text-left">Foraging 101</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-500">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Date</span>
+                            <span class="text-right md:text-left">Yesterday</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Status</span>
+                            <span class="px-2.5 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold uppercase rounded-md border border-green-200 dark:border-green-800">Paid</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="block md:table-row hover:bg-[#F7F5F0] dark:hover:bg-[#1A1A1A] transition-colors py-4 md:py-0">
+                    <td class="block md:table-cell py-2 md:py-4 mb-2 md:mb-0">
+                        <div class="flex items-center gap-3 font-bold text-[#1A1A1A] dark:text-white">
+                            <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-500 flex items-center justify-center text-xs shrink-0">D</div>
+                            David K.
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-600 dark:text-gray-400">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Course</span>
+                            <span class="text-right md:text-left">Agar & Cloning</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4 text-gray-500">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Date</span>
+                            <span class="text-right md:text-left">Oct 14, 2024</span>
+                        </div>
+                    </td>
+                    <td class="block md:table-cell py-2 md:py-4">
+                        <div class="flex justify-between items-center md:block">
+                            <span class="md:hidden text-[10px] font-bold uppercase tracking-widest text-gray-500">Status</span>
+                            <span class="px-2.5 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-500 text-[10px] font-bold uppercase rounded-md border border-yellow-200 dark:border-yellow-800">Pending</span>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
 
                 <div id="page-verify" class="page-content">
                     <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">

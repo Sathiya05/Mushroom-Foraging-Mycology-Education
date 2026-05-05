@@ -248,49 +248,113 @@
         </div>
     </section>
 
-   <section class="py-20 lg:py-28 bg-[#FFFFFF] dark:bg-[#1A1A1A] border-t border-[#6C7A4E]/10 transition-colors duration-300 flex-grow">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+  <section class="py-20 lg:py-28 bg-[#FFFFFF] dark:bg-[#1A1A1A] border-t border-[#6C7A4E]/10 transition-colors duration-300 flex-grow">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
-            <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#6C7A4E] mb-2 block">Quick Answers</span>
-                <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
-                    Frequently Asked Questions
-                </h2>
-            </div>
-
-            <div class="max-w-3xl mx-auto flex flex-col gap-6">
-
-                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-8 rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 hover:shadow-md">
-                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white mb-3">Can you identify a mushroom from a photo I email you?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        For safety reasons, we <strong>do not</strong> provide 100% positive identifications via direct email. If you need help identifying a specimen, please upload it to your <strong>Foraging Logs</strong> in the Student Portal for expert queue review, or post it in our Community Forum.
-                    </p>
-                </div>
-
-                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-8 rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 hover:shadow-md">
-                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white mb-3">Where do you ship your lab supplies and liquid cultures?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Currently, we ship all physical cultivation supplies, including agar plates and liquid cultures, anywhere within the United States and Canada. Digital courses and Field Guides are available worldwide.
-                    </p>
-                </div>
-
-                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-8 rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 hover:shadow-md">
-                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white mb-3">Do you host private foraging tours?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Yes! Elena and our expert guides are available for private group forays in the Pacific Northwest during the Spring and Autumn seasons. Please select "Local Forays & Events" in the contact form to request rates and availability.
-                    </p>
-                </div>
-
-                <div class="bg-[#F7F5F0] dark:bg-[#242424] p-8 rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 hover:shadow-md">
-                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white mb-3">How long do I have access to the academy courses?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Once you purchase a course, you have lifetime access to the materials, including all future updates and video additions made to that specific curriculum.
-                    </p>
-                </div>
-
-            </div>
+        <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#6C7A4E] mb-2 block">Quick Answers</span>
+            <h2 class="text-3xl md:text-4xl font-serif font-black text-[#1A1A1A] dark:text-[#FFFFFF] leading-tight">
+                Frequently Asked Questions
+            </h2>
         </div>
-    </section>
+
+        <div class="max-w-3xl mx-auto flex flex-col gap-4">
+
+            <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion(this)" class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none group">
+                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white pr-4">Can you identify a mushroom from a photo I email you?</h3>
+                    <div class="shrink-0 w-8 h-8 rounded-full border border-[#6C7A4E]/30 flex items-center justify-center text-[#6C7A4E] group-hover:bg-[#6C7A4E] group-hover:text-white transition-colors duration-300">
+                        <svg class="w-4 h-4 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                    <div class="p-6 md:p-8 pt-0 md:pt-0">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            For safety reasons, we <strong>do not</strong> provide 100% positive identifications via direct email. If you need help identifying a specimen, please upload it to your <strong>Foraging Logs</strong> in the Student Portal for expert queue review, or post it in our Community Forum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion(this)" class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none group">
+                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white pr-4">Where do you ship your lab supplies and liquid cultures?</h3>
+                    <div class="shrink-0 w-8 h-8 rounded-full border border-[#6C7A4E]/30 flex items-center justify-center text-[#6C7A4E] group-hover:bg-[#6C7A4E] group-hover:text-white transition-colors duration-300">
+                        <svg class="w-4 h-4 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                    <div class="p-6 md:p-8 pt-0 md:pt-0">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Currently, we ship all physical cultivation supplies, including agar plates and liquid cultures, anywhere within the United States and Canada. Digital courses and Field Guides are available worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion(this)" class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none group">
+                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white pr-4">Do you host private foraging tours?</h3>
+                    <div class="shrink-0 w-8 h-8 rounded-full border border-[#6C7A4E]/30 flex items-center justify-center text-[#6C7A4E] group-hover:bg-[#6C7A4E] group-hover:text-white transition-colors duration-300">
+                        <svg class="w-4 h-4 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                    <div class="p-6 md:p-8 pt-0 md:pt-0">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Yes! Elena and our expert guides are available for private group forays in the Pacific Northwest during the Spring and Autumn seasons. Please select "Local Forays & Events" in the contact form to request rates and availability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#F7F5F0] dark:bg-[#242424] rounded-2xl border border-[#6C7A4E]/10 transition-all hover:border-[#6C7A4E]/30 overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion(this)" class="w-full p-6 md:p-8 flex items-center justify-between text-left focus:outline-none group">
+                    <h3 class="text-lg font-serif font-bold text-[#1A1A1A] dark:text-white pr-4">How long do I have access to the academy courses?</h3>
+                    <div class="shrink-0 w-8 h-8 rounded-full border border-[#6C7A4E]/30 flex items-center justify-center text-[#6C7A4E] group-hover:bg-[#6C7A4E] group-hover:text-white transition-colors duration-300">
+                        <svg class="w-4 h-4 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out faq-content">
+                    <div class="p-6 md:p-8 pt-0 md:pt-0">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Once you purchase a course, you have lifetime access to the materials, including all future updates and video additions made to that specific curriculum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAccordion(button) {
+        const content = button.nextElementSibling;
+        const chevron = button.querySelector('.chevron');
+        const isOpen = content.style.maxHeight;
+
+        // Optional: Close all other open accordions when one is clicked
+        const allContents = document.querySelectorAll('.faq-content');
+        const allChevrons = document.querySelectorAll('.chevron');
+        
+        allContents.forEach((c) => {
+            if (c !== content) c.style.maxHeight = null;
+        });
+        allChevrons.forEach((c) => {
+            if (c !== chevron) c.classList.remove('rotate-180');
+        });
+
+        // Toggle the clicked accordion
+        if (isOpen) {
+            content.style.maxHeight = null;
+            chevron.classList.remove('rotate-180');
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            chevron.classList.add('rotate-180');
+        }
+    }
+</script>
     <section class="py-24 lg:py-32 bg-[#1A1A1A] dark:bg-[#0A0A0A] relative overflow-hidden transition-colors duration-300">
         
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
